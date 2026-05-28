@@ -1,0 +1,44 @@
+name: field_sync
+description: "Mini captura offline-first de inspecciones de campo."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.12.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+
+  # State management
+  flutter_bloc: ^8.1.6
+
+  # Persistence
+  hive_flutter: ^1.1.0
+
+  # Camera (real device camera)
+  camera: ^0.11.0+2
+
+  # Connectivity detection
+  connectivity_plus: ^6.1.1
+
+  # HTTP for backend mock
+  http: ^1.2.2
+
+  # Utilities
+  uuid: ^4.5.1
+  path_provider: ^2.1.4
+  permission_handler: ^11.3.1
+  intl: ^0.19.0
+
+  flutter_image_compress: ^2.3.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  mocktail: ^1.0.4
+
+flutter:
+  uses-material-design: true
