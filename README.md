@@ -98,3 +98,22 @@ Se usa la cámara real del dispositivo con `CameraController`. No se usa `image_
 Se usó Claude Code (Anthropic) para scaffolding inicial, generación de boilerplate (Cubit, pantallas, adapters Hive) y estructura de tests con mocktail.
 
 **Validación:** Se revisó cada archivo generado — lógica de sync, manejo de errores en `SyncService`, lifecycle del `CameraController`, y patrones de `BlocBuilder`. Los tests se ejecutaron y verificaron. Se comprobó que el flujo offline→online dispara correctamente el reintento vía `ConnectivityService.onConnectivityChanged`.
+
+## Diagrama de flujo
+
+Diagrama que ilustra el flujo de sincronización offline-first y la cola de reintentos.
+
+```mermaid
+flowchart LR
+	A[Create/Edit inspection] --> B[Save locally - pending]
+	B --> C{Has connection}
+	C -- Yes --> D[Try POST to httpbin.org/post]
+	D --> E{Response}
+	E -- 200 OK --> F[Mark as synced]
+	E -- Error --> G[Mark as failed]
+	C -- No --> G
+	G --> H[Queued for retry]
+	H --> C
+	I[Manual Sync button] --> D
+	J[ConnectivityService.onConnectivityChanged] --> C
+```
