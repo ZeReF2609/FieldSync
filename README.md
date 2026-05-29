@@ -44,6 +44,30 @@ Elegí **Hive** sobre sqflite/Drift porque:
 
 El flujo es:
 
+```mermaid
+flowchart TD
+    A[Crear/Editar] --> B[Guardar local con SyncStatus.pending]
+    B --> C{¿Hay conexión?}
+    
+    C -- Sí --> E[Intentar POST a httpbin.org]
+    C -- No --> D[Queda en SyncStatus.pending]
+    
+    D -.-> F((Recupera conexión))
+    D -.-> G((Botón Sync manual))
+    
+    F --> H[retryPending automático]
+    G --> H[retryPending manual]
+    
+    H --> E
+    
+    E --> I{¿Éxito 200?}
+    I -- Sí --> J[Marcar como synced]
+    I -- No --> K[Marcar como failed]
+    
+    K -.-> F
+    K -.-> G
+```
+
 1. Al crear/editar → guardar local con `SyncStatus.pending`.
 2. Si hay conexión → intentar `POST` a httpbin.org → marcar `synced` o `failed`.
 3. Al recuperar conexión → `ConnectivityService.onConnectivityChanged` dispara `retryPending()` automáticamente.
