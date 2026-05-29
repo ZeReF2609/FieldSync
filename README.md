@@ -1,5 +1,7 @@
 # Field Sync
 
+![Lista de inspecciones](docs/image.png)
+
 Mini app de captura offline-first de inspecciones de campo.
 
 ---
