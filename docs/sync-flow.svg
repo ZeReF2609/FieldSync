@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="620" viewBox="0 0 900 620">
+  <style>
+    .node { fill: #f8f9fa; stroke: #2b6cb0; stroke-width:2; rx:8; }
+    .node-text { font: 14px Arial, Helvetica, sans-serif; fill: #0b2239; }
+    .diamond { fill: #fff3bf; stroke: #d97706; stroke-width:2; }
+    .arrow { stroke: #2b6cb0; stroke-width:2; fill: none; marker-end: url(#arrowhead); }
+    .dashed { stroke-dasharray:6 4; stroke:#718096; }
+  </style>
+
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2b6cb0" />
+    </marker>
+  </defs>
+
+  <!-- Nodes -->
+  <rect x="40" y="40" width="200" height="48" class="node" />
+  <text x="140" y="70" text-anchor="middle" class="node-text">Crear / Editar</text>
+
+  <rect x="300" y="40" width="260" height="48" class="node" />
+  <text x="430" y="70" text-anchor="middle" class="node-text">Guardar local (SyncStatus.pending)</text>
+
+  <polygon points="620,64 660,40 700,64 660,88" class="diamond" />
+  <text x="660" y="66" text-anchor="middle" class="node-text" font-size="13">¿Hay conexión?</text>
+
+  <rect x="540" y="140" width="260" height="48" class="node" />
+  <text x="670" y="170" text-anchor="middle" class="node-text">Intentar POST a httpbin.org</text>
+
+  <rect x="300" y="240" width="260" height="48" class="node" />
+  <text x="430" y="270" text-anchor="middle" class="node-text">Queda en SyncStatus.pending</text>
+
+  <rect x="40" y="240" width="220" height="48" class="node" />
+  <text x="150" y="270" text-anchor="middle" class="node-text">Recupera conexión</text>
+
+  <rect x="40" y="340" width="220" height="48" class="node" />
+  <text x="150" y="370" text-anchor="middle" class="node-text">Botón Sync manual</text>
+
+  <rect x="540" y="340" width="260" height="48" class="node" />
+  <text x="670" y="370" text-anchor="middle" class="node-text">retryPending (auto/manual)</text>
+
+  <rect x="540" y="460" width="140" height="48" class="node" />
+  <text x="610" y="490" text-anchor="middle" class="node-text">Marcar como synced</text>
+
+  <rect x="720" y="460" width="140" height="48" class="node" />
+  <text x="790" y="490" text-anchor="middle" class="node-text">Marcar como failed</text>
+
+  <!-- Arrows -->
+  <path d="M240,64 L300,64" class="arrow" />
+  <path d="M560,64 L620,64" class="arrow" />
+
+  <path d="M700,64 L700,140" class="arrow" />
+  <path d="M700,64 L700,240" class="arrow" />
+
+  <path d="M720,188 L720,340" class="dashed arrow" />
+
+  <path d="M620,188 L620,340" class="arrow" />
+
+  <path d="M560,188 L540,188" class="arrow" />
+
+  <path d="M800,188 L800,460" class="dashed arrow" />
+
+  <path d="M680,188 L680,460" class="arrow" />
+
+  <path d="M700,396 L700,460" class="arrow" />
+
+  <!-- Connections to retry and manual -->
+  <path d="M430,288 L430,340" class="dashed arrow" />
+  <path d="M250,288 L250,288 L250,240" class="dashed arrow" />
+
+  <!-- Labels for conditional paths -->
+  <text x="740" y="100" class="node-text" font-size="12">Sí</text>
+  <text x="740" y="170" class="node-text" font-size="12">No</text>
+
+  <!-- Footer note -->
+  <text x="450" y="606" text-anchor="middle" font-size="12" fill="#475569">Diagrama estático generado por asistente — corresponde al flujo de sincronización offline-first.</text>
+
+</svg>
